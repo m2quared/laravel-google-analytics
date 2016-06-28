@@ -31,13 +31,13 @@ class AnalyticsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('M2quared\Analytics\Analytics', function ($app) {
-            if (! \File::exists(config('analytics.certificate_path'))) {
+            if (!\File::exists(config('analytics.certificate_path'))) {
                 throw new \Exception("Can't find the .p12 certificate in: ".config('analytics.certificate_path'));
             }
 
             $config = [
                 'oauth2_client_id' => config('analytics.client_id'),
-                'use_objects' => config('analytics.use_objects'),
+                'use_objects'      => config('analytics.use_objects'),
             ];
 
             $client = new \Google_Client($config);
