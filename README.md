@@ -35,7 +35,9 @@ Run `php artisan vendor:publish` and modify the config file `config/google-analy
 Querying the API for visits and pageviews in the last week.
 
 More information about this calling the Google Analytics API can be found here https://developers.google.com/apis-explorer/#s/analytics/v3/analytics.data.ga.get
+
 A list of all Google Analytics metrics can be found here https://developers.google.com/analytics/devguides/reporting/core/dimsmets
+
 ```php
 $site_id = Analytics::getSiteIdByUrl('http://github.com/'); // return something like 'ga:11111111'
 
