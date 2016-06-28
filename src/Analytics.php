@@ -1,10 +1,12 @@
-<?php namespace M2quared\Analytics;
+<?php
+
+namespace M2quared\Analytics;
 
 class Analytics
 {
     protected $client;
     protected $service;
-    private $site_ids = array();
+    private $site_ids = [];
 
     public function __construct(\Google_Client $client)
     {
@@ -36,7 +38,7 @@ class Analytics
         return $this;
     }
 
-    public function query($id, $start_date, $end_date, $metrics, $others = array())
+    public function query($id, $start_date, $end_date, $metrics, $others = [])
     {
         return $this->service->data_ga->get($id, $start_date, $end_date, $metrics, $others);
     }
@@ -44,11 +46,13 @@ class Analytics
     /**
      * Runs analytics query calls in batch mode
      * It accepts an array of queries as specified by the parameters of the Analytics::query function
-     * With an additional optional parameter named key, which is used to identify the results for a specific object
+     * With an additional optional parameter named key, which is used to identify the results for a specific object.
      *
      * Returns an array with object keys as response-KEY where KEY is the key you specified or a random key returned
      * from analytics.
+     *
      * @param array $queries
+     *
      * @return array|null
      */
     public function batchQueries(array $queries)
@@ -68,7 +72,7 @@ class Analytics
             $key = array_pull($query, 'key');
 
             // call the original query method to get the request object
-            $req = call_user_func_array(__NAMESPACE__ .'\Analytics::query', $query);
+            $req = call_user_func_array(__NAMESPACE__.'\Analytics::query', $query);
 
             $batch->add($req, $key);
         }
@@ -109,9 +113,9 @@ class Analytics
     public function getAllSitesIds()
     {
         if (empty($this->site_ids)) {
-            $sites = $this->service->management_profiles->listManagementProfiles("~all", "~all");
+            $sites = $this->service->management_profiles->listManagementProfiles('~all', '~all');
             foreach ($sites['items'] as $site) {
-                $this->site_ids[$site['websiteUrl']] = 'ga:' . $site['id'];
+                $this->site_ids[$site['websiteUrl']] = 'ga:'.$site['id'];
             }
         }
 

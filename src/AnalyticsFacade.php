@@ -1,10 +1,11 @@
-<?php namespace M2quared\Analytics;
+<?php
+
+namespace M2quared\Analytics;
 
 use Illuminate\Support\Facades\Facade;
 
 class AnalyticsFacade extends Facade
 {
-
     /**
      * Get the registered name of the component.
      *

@@ -16,7 +16,7 @@
 |
 */
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return array(
     |
     */
 
-    'certificate_path' => __DIR__ . '/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-privatekey.p12',
+    'certificate_path' => __DIR__.'/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-privatekey.p12',
 
 
     /*
@@ -69,4 +69,4 @@ return array(
     */
 
     'use_objects'      => true,
-);
+];
