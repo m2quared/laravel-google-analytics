@@ -1,6 +1,6 @@
 # Analytics
 
-Port of Laravel 4 bundle [thujohn/analytics](https://github.com/thujohn/analytics) for Laravel 5
+Port of Laravel 4 bundle [thujohn/analytics](https://github.com/thujohn/analytics-l4) for Laravel 5
 
 ## Installation
 
@@ -12,20 +12,24 @@ Run `composer update` to pull down the latest release of Laravel Google Analytic
 
 Now open up `config/app.php` and add the service provider to your `providers` array.
 
+```php
     'providers' => [
         M2quared\Analytics\AnalyticsServiceProvider::class,
     ]
+```
 
 Now add the alias.
 
+```php
     'aliases' => [
         'Analytics' => M2quared\Analytics\AnalyticsFacade::class,
     ]
+```
 
 
 ## Configuration
 
-Run `php artisan vendor:publish` and modify the config file `config/google-analytics.php` with your own informations.
+Run `php artisan vendor:publish` and modify the config file `config/google-analytics.php` with your own information.
 
 ## Usage
 Querying the API for visits and pageviews in the last week.
