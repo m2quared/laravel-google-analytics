@@ -1,4 +1,4 @@
-# Analytics
+# Laravel Google Analytics
 
 Port of Laravel 4 bundle [thujohn/analytics](https://github.com/thujohn/analytics-l4) for Laravel 5
 
