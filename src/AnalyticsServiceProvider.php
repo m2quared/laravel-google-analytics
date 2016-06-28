@@ -31,13 +31,13 @@ class AnalyticsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('M2quared\Analytics\Analytics', function ($app) {
-            if (!\File::exists(config('analytics.certificate_path'))) {
-                throw new \Exception("Can't find the .p12 certificate in: ".config('analytics.certificate_path'));
+            if (!\File::exists(config('google-analytics.certificate_path'))) {
+                throw new \Exception("Can't find the .p12 certificate in: ".config('google-analytics.certificate_path'));
             }
 
             $config = [
-                'oauth2_client_id' => config('analytics.client_id'),
-                'use_objects'      => config('analytics.use_objects'),
+                'oauth2_client_id' => config('google-analytics.client_id'),
+                'use_objects'      => config('google-analytics.use_objects'),
             ];
 
             $client = new \Google_Client($config);
@@ -46,9 +46,9 @@ class AnalyticsServiceProvider extends ServiceProvider
 
             $client->setAssertionCredentials(
                 new \Google_Auth_AssertionCredentials(
-                    config('analytics.service_email'),
+                    config('google-analytics.service_email'),
                     ['https://www.googleapis.com/auth/analytics.readonly'],
-                    file_get_contents(config('analytics.certificate_path'))
+                    file_get_contents(config('google-analytics.certificate_path'))
                 )
             );
 
