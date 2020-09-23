@@ -2,6 +2,7 @@
 
 namespace M2quared\Analytics;
 
+use Google_Client;
 use Illuminate\Support\ServiceProvider;
 
 class AnalyticsServiceProvider extends ServiceProvider
@@ -31,26 +32,14 @@ class AnalyticsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('M2quared\Analytics\Analytics', function ($app) {
-            if (!\File::exists(config('google-analytics.certificate_path'))) {
-                throw new \Exception("Can't find the .p12 certificate in: ".config('google-analytics.certificate_path'));
+            if (! \File::exists(config('google-analytics.service_json_path'))) {
+                throw new \Exception("Can't find the service .json file in: ".config('google-analytics.service_json_path'));
             }
 
-            $config = [
-                'oauth2_client_id' => config('google-analytics.client_id'),
-                'use_objects'      => config('google-analytics.use_objects'),
-            ];
+            $client = new Google_Client();
 
-            $client = new \Google_Client($config);
-
-            $client->setAccessType('offline');
-
-            $client->setAssertionCredentials(
-                new \Google_Auth_AssertionCredentials(
-                    config('google-analytics.service_email'),
-                    ['https://www.googleapis.com/auth/analytics.readonly'],
-                    file_get_contents(config('google-analytics.certificate_path'))
-                )
-            );
+            $client->setAuthConfig(config('google-analytics.service_json_path'));
+            $client->addScope('https://www.googleapis.com/auth/analytics.readonly');
 
             return new Analytics($client);
         });
