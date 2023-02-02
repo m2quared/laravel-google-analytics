@@ -1,7 +1,12 @@
 {
     "name": "m2quared/laravel-google-analytics",
     "description": "Google Analytics for Laravel 5",
-	"keywords": ["google", "analytics", "laravel", "laravel5"],
+    "keywords": [
+        "google",
+        "analytics",
+        "laravel",
+        "laravel5"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -14,9 +19,9 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "illuminate/support": "^9.0",
-        "google/apiclient" : "^2.9"
+        "php": "^8.1",
+        "illuminate/support": "^10.0",
+        "google/apiclient": "^2.13"
     },
     "autoload": {
         "psr-4": {
